@@ -8,7 +8,7 @@ from tensorflow.keras.optimizers import Adam
 IMG_SIZE=224
 BATCH_SIZE=32
 EPOCHS=10
-DATASET_PATH="../dataset/plant_disease"
+DATASET_PATH="../datasets/plant_disease"
 
 train_datagen=ImageDataGenerator(rescale=1.0/255,validation_split=0.2,rotation_range=20,
                                  zoom_range=0.2,horizontal_flip=True)
@@ -31,3 +31,7 @@ model.compile(optimizer=Adam(learning_rate=0.001),loss='categorical_crossentropy
               metrics=['accuracy'])
 
 history=model.fit(train_data,validation_data=val_data,epochs=EPOCHS)
+
+os.makedirs("../models",exist_ok=True)
+model.save("../models/plant_disease_cnn.keras")
+print("Model Training Completed")
