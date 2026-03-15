@@ -19,3 +19,9 @@ val_data=train_datagen.flow_from_directory(DATASET_PATH,target_size=(IMG_SIZE,IM
                                         batch_size=BATCH_SIZE,class_mode='categorical',
                                         subset='validation')
 
+model=Sequential([Conv2D(32,(3,3),activation='relu',input_shape=(IMG_SIZE,IMG_SIZE,3)),
+                  MaxPooling2D(2,2),
+                  Conv2D(64,(3,3),activation="relu"), 
+                  MaxPooling2D(2,2), Conv2D(128,(3,3),activation="relu"), 
+                  MaxPooling2D(2,2), Flatten(), Dense(128,activation="relu"), 
+                  Dropout(0.5), Dense(train_data.num_classes,activation="softmax")])
