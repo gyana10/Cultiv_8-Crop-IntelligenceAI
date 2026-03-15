@@ -15,3 +15,7 @@ train_datagen=ImageDataGenerator(rescale=1.0/255,validation_split=0.2,rotation_r
 train_data=train_datagen.flow_from_directory(DATASET_PATH,target_size=(IMG_SIZE,IMG_SIZE),
                                         batch_size=BATCH_SIZE,class_mode='categorical',
                                         subset='training')
+val_data=train_datagen.flow_from_directory(DATASET_PATH,target_size=(IMG_SIZE,IMG_SIZE),
+                                        batch_size=BATCH_SIZE,class_mode='categorical',
+                                        subset='validation')
+
