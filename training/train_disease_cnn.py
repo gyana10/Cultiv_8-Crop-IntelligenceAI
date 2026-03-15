@@ -1,3 +1,4 @@
+import os
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D,Flatten,Dense,Dropout
@@ -25,3 +26,8 @@ model=Sequential([Conv2D(32,(3,3),activation='relu',input_shape=(IMG_SIZE,IMG_SI
                   MaxPooling2D(2,2), Conv2D(128,(3,3),activation="relu"), 
                   MaxPooling2D(2,2), Flatten(), Dense(128,activation="relu"), 
                   Dropout(0.5), Dense(train_data.num_classes,activation="softmax")])
+
+model.compile(optimizer=Adam(learning_rate=0.001),loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+history=model.fit(train_data,validation_data=val_data,epochs=EPOCHS)
